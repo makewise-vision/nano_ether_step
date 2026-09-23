@@ -42,8 +42,8 @@ void isrMarker()
     Serial.print("Rev dur: ");
     Serial.println(duration);
     // basic sanity check: ignore too-small/too-large spikes
-    if (duration > 100000UL && duration < 60UL * 1000000UL)
-    { // >5ms and <60s
+    if (duration > 1000000UL && duration < 60UL * 1000000UL)
+    { // >1s and <60s
       pulseCount++;
       revDurationMicros = duration;
       prevPulseMicros = lastPulseMicros;
@@ -198,8 +198,8 @@ void setup()
   // ENC28J60 DHCP
   if (Ethernet.begin(mac) == 0)
   {
-    Serial.println(F("DHCP failed - using fallback IP 192.168.1.177"));
-    IPAddress ip(192, 168, 1, 177);
+    Serial.println(F("DHCP failed - using fallback IP 192.168.2.177"));
+    IPAddress ip(192, 168, 2, 177);
     Ethernet.begin(mac, ip);
   }
   delay(500);
